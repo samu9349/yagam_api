@@ -1,7 +1,7 @@
 const config = {
     db: {
       port:3306,
-      host: "127.0.0.1",
+      host: "68.178.145.32",
       user: "root",
       password: "Password@123",
       database: "yaagam",
