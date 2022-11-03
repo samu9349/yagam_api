@@ -2,9 +2,9 @@ const config = {
     db: {
       port:3306,
       host: "68.178.145.32",
-      user: "root",
-      password: "Password@123",
-      database: "yaagam",
+      user: "yagam",
+      password: "Yagam@123",
+      database: "yagam",
     },
     listPerPage: 10,
     payumoneyConfig:{
