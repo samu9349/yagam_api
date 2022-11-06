@@ -2,7 +2,6 @@ const db = require('./db');
 const helper = require('../helper');
 
 async function getUsers(){
-  debugger;
   const rows = await db.query(
     `SELECT userId, userName
     FROM users`
