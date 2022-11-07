@@ -141,108 +141,108 @@ router.post('/payment/success', function (req, res) {
 	}
 	res.redirect(config.clientConfig.successPaymentRedirection);
 
-	// //Generate Hash
-	// var cryp = crypto.createHash('sha512');
-	// cryp.update(reverseKeyString);
-	// var calchash = cryp.digest('hex');
+	//Generate Hash
+	var cryp = crypto.createHash('sha512');
+	cryp.update(reverseKeyString);
+	var calchash = cryp.digest('hex');
 
-	// var msg = 'Payment failed for Hash not verified...<br />Check Console Log for full response...';
-	// //Comapre status and hash. Hash verification is mandatory.
-	// if (calchash == resphash)
-	// 	msg = 'Transaction Successful and Hash Verified...<br />Check Console Log for full response...';
+	var msg = 'Payment failed for Hash not verified...<br />Check Console Log for full response...';
+	//Comapre status and hash. Hash verification is mandatory.
+	if (calchash == resphash)
+		msg = 'Transaction Successful and Hash Verified...<br />Check Console Log for full response...';
 
-	// console.log(req.body);
+	console.log(req.body);
 
-	// //Verify Payment routine to double check payment
-	// var command = "verify_payment";
+	//Verify Payment routine to double check payment
+	var command = "verify_payment";
 
-	// var hash_str = config.payumoneyConfig.key + '|' + command + '|' + txnid + '|' + config.payumoneyConfig.salt;
-	// var vcryp = crypto.createHash('sha512');
-	// vcryp.update(hash_str);
-	// var vhash = vcryp.digest('hex');
+	var hash_str = config.payumoneyConfig.key + '|' + command + '|' + txnid + '|' + config.payumoneyConfig.salt;
+	var vcryp = crypto.createHash('sha512');
+	vcryp.update(hash_str);
+	var vhash = vcryp.digest('hex');
 
-	// var vdata = '';
-	// var details = '';
+	var vdata = '';
+	var details = '';
 
-	// var options = {
-	// 	method: 'POST',
-	// 	uri: 'https://test.payu.in/merchant/postservice.php?form=2',
-	// 	form: {
-	// 		key: config.payumoneyConfig.key,
-	// 		hash: vhash,
-	// 		var1: txnid,
-	// 		command: command
-	// 	},
-	// 	headers: {
-	// 		/* 'content-type': 'application/x-www-form-urlencoded' */ // Is set automatically
-	// 	}
-	// };
+	var options = {
+		method: 'POST',
+		uri: 'https://test.payu.in/merchant/postservice.php?form=2',
+		form: {
+			key: config.payumoneyConfig.key,
+			hash: vhash,
+			var1: txnid,
+			command: command
+		},
+		headers: {
+			/* 'content-type': 'application/x-www-form-urlencoded' */ // Is set automatically
+		}
+	};
 
-	// request(options)
-	// 	.on('response', function (resp) {
-	// 		debugger;
-	// 		console.log('STATUS:' + resp.statusCode);
-	// 		resp.setEncoding('utf8');
-	// 		resp.on('data', function (chunk) {
-	// 			vdata = JSON.parse(chunk);
-	// 			if (vdata.status == '1') {
-	// 				details = vdata.transaction_details[txnid];
-	// 				console.log(details['status'] + '   ' + details['mihpayid']);
-	// 				if (details['status'] == 'success' && details['mihpayid'] == mihpayid)
-	// 					verified = "Yes";
-	// 				else
-	// 					verified = "No";
-	// 				let data = {
-	// 					statusId: resp.statusCode,
-	// 					msg: msg,
-	// 					mihpayid: mihpayid,
-	// 					request_id: req.body.bank_ref_num,
-	// 					bank_ref_num: req.body.bank_ref_num,
-	// 					amt: amount,
-	// 					transaction_amount: amount,
-	// 					txnid: txnid,
-	// 					additional_charges: additionalcharges,
-	// 					productinfo: productinfo,
-	// 					firstname: firstname,
-	// 					bankcode: req.body.bankcode,
-	// 					udf1: req.body.udf1,
-	// 					udf3: req.body.udf3,
-	// 					udf4: req.body.udf4,
-	// 					udf5: req.body.udf5,
-	// 					field2: req.body.field2,
-	// 					field9: req.body.field9,
-	// 					error_code: req.body.error,
-	// 					addedon: req.body.addedon,
-	// 					payment_source: req.body.payment_source,
-	// 					card_type: req.body.cardCategory,
-	// 					error_Message: req.body.error_Message,
-	// 					net_amount_debit: req.body.net_amount_debit,
-	// 					disc: req.body.discount,
-	// 					mode: req.body.mode,
-	// 					PG_TYPE: req.body.PG_TYPE,
-	// 					card_no: req.body.cardnum,
-	// 					name_on_card: req.body.firstname,
-	// 					udf2: req.body.udf2,
-	// 					transactionStatus: req.body.status,
-	// 					unmappedstatus: req.body.unmappedstatus,
-	// 					Merchant_UTR: '',
-	// 					Settled_At: req.body.addedon
-	// 				};
-	// 				participantService.createPaymentResponse(data).then(response => {
+	request(options)
+		.on('response', function (resp) {
+			debugger;
+			console.log('STATUS:' + resp.statusCode);
+			resp.setEncoding('utf8');
+			resp.on('data', function (chunk) {
+				vdata = JSON.parse(chunk);
+				if (vdata.status == '1') {
+					details = vdata.transaction_details[txnid];
+					console.log(details['status'] + '   ' + details['mihpayid']);
+					if (details['status'] == 'success' && details['mihpayid'] == mihpayid)
+						verified = "Yes";
+					else
+						verified = "No";
+					let data = {
+						statusId: resp.statusCode,
+						msg: msg,
+						mihpayid: mihpayid,
+						request_id: req.body.bank_ref_num,
+						bank_ref_num: req.body.bank_ref_num,
+						amt: amount,
+						transaction_amount: amount,
+						txnid: txnid,
+						additional_charges: additionalcharges,
+						productinfo: productinfo,
+						firstname: firstname,
+						bankcode: req.body.bankcode,
+						udf1: req.body.udf1,
+						udf3: req.body.udf3,
+						udf4: req.body.udf4,
+						udf5: req.body.udf5,
+						field2: req.body.field2,
+						field9: req.body.field9,
+						error_code: req.body.error,
+						addedon: req.body.addedon,
+						payment_source: req.body.payment_source,
+						card_type: req.body.cardCategory,
+						error_Message: req.body.error_Message,
+						net_amount_debit: req.body.net_amount_debit,
+						disc: req.body.discount,
+						mode: req.body.mode,
+						PG_TYPE: req.body.PG_TYPE,
+						card_no: req.body.cardnum,
+						name_on_card: req.body.firstname,
+						udf2: req.body.udf2,
+						transactionStatus: req.body.status,
+						unmappedstatus: req.body.unmappedstatus,
+						Merchant_UTR: '',
+						Settled_At: req.body.addedon
+					};
+					// participantService.createPaymentResponse(data).then(response => {
 					
-	// 					let bookingid=productinfo.split('_')[1];
-	// 					participantService.updateResponseId(bookingid,txnid).then(response1=>{
-	// 						let booking={};
-	// 						commonService.sendMail(email,booking);
-	// 						res.redirect(config.clientConfig.successPaymentRedirection);
-	// 					});
-	// 				});
-	// 			}
-	// 		});
-	// 	})
-	// 	.on('error', function (err) {
-	// 		console.log(err);
-	// 	});
+					// 	let bookingid=productinfo.split('_')[1];
+					// 	participantService.updateResponseId(bookingid,txnid).then(response1=>{
+					// 		let booking={};
+					// 		commonService.sendMail(email,booking);
+					res.redirect(config.clientConfig.successPaymentRedirection);
+					// 	});
+					// });
+				}
+			});
+		})
+		.on('error', function (err) {
+			console.log(err);
+		});
 });
 
 
