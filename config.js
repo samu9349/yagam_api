@@ -21,8 +21,8 @@ const config = {
     clientConfig:{
       // successPaymentRedirection:'http://localhost:4200/payment/success',
       // cancelPaymentRedirection:'http://localhost:4200/payment/cancel'
-      successPaymentRedirection:'https://puthrakameshtiyagam.com/payment/success',
-      cancelPaymentRedirection:'https://puthrakameshtiyagam.com/payment/cancel'
+      successPaymentRedirection:'https://puthrakameshtiyagam.com/#/payment/success',
+      cancelPaymentRedirection:'https://puthrakameshtiyagam.com/#/payment/cancel'
     },
     mailConfig:{
       host:'smtpout.secureserver.net',
