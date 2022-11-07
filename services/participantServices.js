@@ -35,6 +35,16 @@ async function updateResponseId(bookingId,responseId){
   return {message};
 }
 
+async function getParticipant(participantId){
+  let query = "call GETPARTICIPANT('" + participantId + "')";
+  const rows = await db.query(
+    query
+  );
+  const data = helper.emptyOrRows(rows);  
+  return {
+    data
+  }
+}
 
 async function createParticipantPooja(req) {
   for (let index = 0; index < req.length; index++) {
@@ -52,5 +62,6 @@ module.exports = {
   createParticipant,
   createParticipantPooja,
   createPaymentResponse,
-  updateResponseId
+  updateResponseId,
+  getParticipant
 }
