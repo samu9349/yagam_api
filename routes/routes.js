@@ -58,25 +58,25 @@ router.get('/common/getAllPooja', async function (req, res, next) {
 	var transporter = nodemailer.createTransport({
 		service: 'puthrakameshtiyagam',
 		auth: {
-		  user: 'alerts@puthrakameshtiyagam.com',
-		  pass: 'vysakh123.'
+			user: 'alerts@puthrakameshtiyagam.com',
+			pass: 'vysakh123.'
 		}
-	  });
-	  
-	  var mailOptions = {
+	});
+
+	var mailOptions = {
 		from: 'alerts@puthrakameshtiyagam.com',
 		to: 'samu9349@gmail.com',
 		subject: 'Payment Successfull',
 		html: 'That was easy!'
-	  };
-	  
-	  transporter.sendMail(mailOptions, function(error, info){
+	};
+
+	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
-		  console.log(error);
+			console.log(error);
 		} else {
-		  console.log('Email sent: ' + info.response);
+			console.log('Email sent: ' + info.response);
 		}
-	  });
+	});
 	try {
 		res.json(await commonService.getPooja());
 	} catch (err) {
@@ -228,13 +228,13 @@ router.post('/payment/success', function (req, res) {
 						Merchant_UTR: '',
 						Settled_At: req.body.addedon
 					};
-					 participantService.createPaymentResponse(data).then(response => {
-					// 	let bookingid=productinfo.split('_')[1];
-					// 	participantService.updateResponseId(bookingid,txnid).then(response1=>{
-					// 		let booking={};
-					// 		commonService.sendMail(email,booking);
+					participantService.createPaymentResponse(data).then(response => {
+						let bookingid = productinfo.split('_')[1];
+						participantService.updateResponseId(bookingid, txnid).then(response1 => {
+							// 		let booking={};
+							// 		commonService.sendMail(email,booking);
 							res.redirect(config.clientConfig.successPaymentRedirection);
-					// 	});
+						});
 					});
 				}
 			});
