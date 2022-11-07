@@ -400,26 +400,26 @@ function sendMail(toAddress, booking) {
     
     </html>`;
 
-  htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
-  htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
-  htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.txnno);
-  let poojaDetailsBody = '';
-  let totalAmount=0;
-  booking.participantPoojas.forEach(a => {
-    totalAmount+=a.poojaPrice;
-    poojaDetailsBody += `<tr>
-<td
-    style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
-    ${a.poojaName}
-</td>
-<td></td>
-<td
-    style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
-    ${a.poojaPrice}</td>
-</tr>`;
-  });
-  htmlBody = htmlBody.replace('{TOTAL}', totalAmount);
-  htmlBody = htmlBody.replace('{CONTACT_NO}', booking.contactNo);
+//   htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
+//   htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
+//   htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.txnno);
+//   let poojaDetailsBody = '';
+//   let totalAmount=0;
+//   booking.participantPoojas.forEach(a => {
+//     totalAmount+=a.poojaPrice;
+//     poojaDetailsBody += `<tr>
+// <td
+//     style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
+//     ${a.poojaName}
+// </td>
+// <td></td>
+// <td
+//     style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
+//     ${a.poojaPrice}</td>
+// </tr>`;
+//   });
+//   htmlBody = htmlBody.replace('{TOTAL}', totalAmount);
+//   htmlBody = htmlBody.replace('{CONTACT_NO}', booking.contactNo);
 
 
 
