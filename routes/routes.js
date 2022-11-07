@@ -231,8 +231,8 @@ router.post('/payment/success', function (req, res) {
 					participantService.createPaymentResponse(data).then(response => {
 						let bookingid = productinfo.split('_')[1];
 						participantService.updateResponseId(bookingid, txnid).then(response1 => {
-							// 		let booking={};
-							// 		commonService.sendMail(email,booking);
+							let booking = {};
+							commonService.sendMail(email, booking);
 							res.redirect(config.clientConfig.successPaymentRedirection);
 						});
 					});
