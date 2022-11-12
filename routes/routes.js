@@ -85,6 +85,15 @@ router.get('/common/getAllPooja', async function (req, res, next) {
 	}
 });
 
+router.post('/common/contactUs', async function (req, res, next) {
+	try {
+		res.json(await commonService.contactUs(req.body));
+	} catch (err) {
+		console.error(`Error while contactUs`, err.message);
+		next(err);
+	}
+});
+
 router.post('/payment_gateway/payumoney', async function (request, res, next) {
 	let req = request.body;
 	const txnId = `yagam${Math.round(new Date().getTime() + (Math.random() * 100))}`;

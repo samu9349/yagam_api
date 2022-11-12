@@ -13,7 +13,82 @@ async function getPooja() {
     data
   }
 }
+function contactUs(data) {
+   let htmlBody=`
+   <table border="0" cellpadding="0" cellspacing="0" height="300px" width="100%" bgcolor="#F7F7F7">
+       <tr>
+           <td>
+               First Name
+           </td>
+           <td>
+               {FIRSTNAME}
+           </td>
+       </tr>
+       <tr>
+           <td>
+               Phone No
+           </td>
+           <td>
+               {PHONE}
+           </td>
+       </tr>
+       <tr>
+           <td>
+               Email
+           </td>
+           <td>
+               {EMAIL}
+           </td>
+       </tr>
+       <tr>
+           <td>
+               Message
+           </td>
+           <td>
+               {MESSAGE}
+           </td>
+       </tr>
+   </table>`;
 
+   htmlBody = htmlBody.replace('{FIRSTNAME}', data.firstName);
+   htmlBody = htmlBody.replace('{PHONE}', data.phone);
+   htmlBody = htmlBody.replace('{EMAIL}', data.email);
+   htmlBody = htmlBody.replace('{MESSAGE}', data.message);
+
+
+
+  const mailTransport = nodemailer.createTransport({
+    host: config.mailConfig.host,
+    secure: true,
+    secureConnection: false, // TLS requires secureConnection to be false
+    tls: {
+      ciphers: 'SSLv3'
+    },
+    requireTLS: true,
+    port: 465,
+    debug: true,
+    auth: {
+      user: config.mailConfig.user,
+      pass: config.mailConfig.password
+    }
+  });
+
+  const mailOptions = {
+    from: config.mailConfig.user,
+    to: 'samu9349@gmail.com',
+    subject: `Enquiry from Customer`,
+    html: htmlBody
+  };
+
+  mailTransport.sendMail(mailOptions).then(() => {
+    console.log('Email sent successfully');
+  }).catch((err) => {
+    console.log('Failed to send email');
+    console.error(err);
+  });
+
+
+}
 function sendMail(toAddress, booking) {
   let htmlBody = `<html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -402,7 +477,7 @@ function sendMail(toAddress, booking) {
 
 //   htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
 //   htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
-//   htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.txnno);
+//   htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.bookingid);
 //   let poojaDetailsBody = '';
 //   let totalAmount=0;
 //   booking.participantPoojas.forEach(a => {
@@ -457,5 +532,6 @@ function sendMail(toAddress, booking) {
 
 module.exports = {
   getPooja,
-  sendMail
+  sendMail,
+  contactUs
 }
