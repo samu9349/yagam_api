@@ -5,17 +5,17 @@ const config = require("../config")
 
 
 async function getPooja() {
-  const rows = await db.query(
-    `SELECT poojaId, poojaName, poojaPrice FROM pooja`
-  );
-  const data = helper.emptyOrRows(rows);
-  return {
-    data
-  }
+    const rows = await db.query(
+        `SELECT poojaId, poojaName, poojaPrice,isDisplay FROM pooja`
+    );
+    const data = helper.emptyOrRows(rows);
+    return {
+        data
+    }
 }
 function contactUs(data) {
-   let htmlBody=`
-   <table border="0" cellpadding="0" cellspacing="0" height="300px" width="100%" bgcolor="#F7F7F7">
+    let htmlBody = `
+   <table border="0" cellpadding="0" cellspacing="0" height="200px" width="100%" bgcolor="#F7F7F7">
        <tr>
            <td>
                First Name
@@ -50,47 +50,47 @@ function contactUs(data) {
        </tr>
    </table>`;
 
-   htmlBody = htmlBody.replace('{FIRSTNAME}', data.firstName);
-   htmlBody = htmlBody.replace('{PHONE}', data.phone);
-   htmlBody = htmlBody.replace('{EMAIL}', data.email);
-   htmlBody = htmlBody.replace('{MESSAGE}', data.message);
+    htmlBody = htmlBody.replace('{FIRSTNAME}', data.firstName);
+    htmlBody = htmlBody.replace('{PHONE}', data.phone);
+    htmlBody = htmlBody.replace('{EMAIL}', data.email);
+    htmlBody = htmlBody.replace('{MESSAGE}', data.message);
 
 
 
-  const mailTransport = nodemailer.createTransport({
-    host: config.mailConfig.host,
-    secure: true,
-    secureConnection: false, // TLS requires secureConnection to be false
-    tls: {
-      ciphers: 'SSLv3'
-    },
-    requireTLS: true,
-    port: 465,
-    debug: true,
-    auth: {
-      user: config.mailConfig.user,
-      pass: config.mailConfig.password
-    }
-  });
+    const mailTransport = nodemailer.createTransport({
+        host: config.mailConfig.host,
+        secure: true,
+        secureConnection: false, // TLS requires secureConnection to be false
+        tls: {
+            ciphers: 'SSLv3'
+        },
+        requireTLS: true,
+        port: 465,
+        debug: true,
+        auth: {
+            user: config.mailConfig.user,
+            pass: config.mailConfig.password
+        }
+    });
 
-  const mailOptions = {
-    from: config.mailConfig.user,
-    to: 'samu9349@gmail.com,manusankar88@gmail.com',
-    subject: `Enquiry from Customer`,
-    html: htmlBody
-  };
+    const mailOptions = {
+        from: config.mailConfig.user,
+        to: 'samu9349@gmail.com,manusankar88@gmail.com',
+        subject: `Enquiry from Customer`,
+        html: htmlBody
+    };
 
-  mailTransport.sendMail(mailOptions).then(() => {
-    console.log('Email sent successfully');
-  }).catch((err) => {
-    console.log('Failed to send email');
-    console.error(err);
-  });
+    mailTransport.sendMail(mailOptions).then(() => {
+        console.log('Email sent successfully');
+    }).catch((err) => {
+        console.log('Failed to send email');
+        console.error(err);
+    });
 
 
 }
 function sendMail(toAddress, booking) {
-  let htmlBody = `<html xmlns="http://www.w3.org/1999/xhtml">
+    let htmlBody = `<html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
         <meta name="viewport" content="width=device-width">
@@ -475,63 +475,68 @@ function sendMail(toAddress, booking) {
     
     </html>`;
 
-//   htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
-//   htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
-//   htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.bookingid);
-//   let poojaDetailsBody = '';
-//   let totalAmount=0;
-//   booking.participantPoojas.forEach(a => {
-//     totalAmount+=a.poojaPrice;
-//     poojaDetailsBody += `<tr>
-// <td
-//     style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
-//     ${a.poojaName}
-// </td>
-// <td></td>
-// <td
-//     style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
-//     ${a.poojaPrice}</td>
-// </tr>`;
-//   });
-//   htmlBody = htmlBody.replace('{TOTAL}', totalAmount);
-//   htmlBody = htmlBody.replace('{CONTACT_NO}', booking.contactNo);
+    htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
+    htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
+    htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.bookingid);
+    let poojaDetailsBody = '';
+    let poojaPrice=0;
+    booking.participantPoojas.forEach(a => {
+        poojaPrice=0;
+        if(a.poojaName=='savana'){
+            poojaPrice = a.poojaPrice* booking.no_of_savana;
+        }else{
+            poojaPrice = a.poojaPrice;
+        }
+        poojaDetailsBody += `<tr>
+<td
+    style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
+    ${a.poojaName}
+</td>
+<td></td>
+<td
+    style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
+    ${poojaPrice}</td>
+</tr>`;
+    });
+    htmlBody = htmlBody.replace('{TOTAL}', booking.totalAmount);
+    htmlBody = htmlBody.replace('{CONTACT_NO}', booking.contactNo);
 
 
 
-  const mailTransport = nodemailer.createTransport({
-    host: config.mailConfig.host,
-    secure: true,
-    secureConnection: false, // TLS requires secureConnection to be false
-    tls: {
-      ciphers: 'SSLv3'
-    },
-    requireTLS: true,
-    port: 465,
-    debug: true,
-    auth: {
-      user: config.mailConfig.user,
-      pass: config.mailConfig.password
-    }
-  });
+    const mailTransport = nodemailer.createTransport({
+        host: config.mailConfig.host,
+        secure: true,
+        secureConnection: false, // TLS requires secureConnection to be false
+        tls: {
+            ciphers: 'SSLv3'
+        },
+        requireTLS: true,
+        port: 465,
+        debug: true,
+        auth: {
+            user: config.mailConfig.user,
+            pass: config.mailConfig.password
+        }
+    });
 
-  const mailOptions = {
-    from: config.mailConfig.user,
-    to: toAddress,
-    subject: `Payment confirmation`,
-    html: htmlBody
-  };
+    const mailOptions = {
+        from: config.mailConfig.user,
+        to: toAddress,
+        subject: `Payment confirmation`,
+        html: htmlBody
+    };
 
-  mailTransport.sendMail(mailOptions).then(() => {
-    console.log('Email sent successfully');
-  }).catch((err) => {
-    console.log('Failed to send email');
-    console.error(err);
-  });
+    mailTransport.sendMail(mailOptions).then(() => {
+        console.log('Email sent successfully');
+    }).catch((err) => {
+        console.log('Failed to send email');
+        console.error(err);
+    });
 }
 
 
 module.exports = {
-  getPooja,
-  sendMail,
-  contactUs
+    getPooja,
+    sendMail,
+    contactUs
 }

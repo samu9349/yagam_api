@@ -55,28 +55,6 @@ router.post('/participant/saveparticipantpooja', async function (req, res, next)
 });
 
 router.get('/common/getAllPooja', async function (req, res, next) {
-	var transporter = nodemailer.createTransport({
-		service: 'puthrakameshtiyagam',
-		auth: {
-			user: 'alerts@puthrakameshtiyagam.com',
-			pass: 'vysakh123.'
-		}
-	});
-
-	var mailOptions = {
-		from: 'alerts@puthrakameshtiyagam.com',
-		to: 'samu9349@gmail.com',
-		subject: 'Payment Successfull',
-		html: 'That was easy!'
-	};
-
-	transporter.sendMail(mailOptions, function (error, info) {
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Email sent: ' + info.response);
-		}
-	});
 	try {
 		res.json(await commonService.getPooja());
 	} catch (err) {
@@ -126,6 +104,7 @@ router.post('/payment/cancel', function (req, res) {
 });
 
 router.post('/payment/success', function (req, res) {
+	debugger;
 	var verified = 'No';
 	var txnid = req.body.txnid;
 	var amount = req.body.amount;
@@ -240,9 +219,34 @@ router.post('/payment/success', function (req, res) {
 					participantService.createPaymentResponse(data).then(response => {
 						let bookingid = productinfo.split('_')[1];
 						participantService.updateResponseId(bookingid, txnid).then(response1 => {
-							let booking = {};
-							commonService.sendMail('manusankar88@gmail.com', booking);
-							res.redirect(config.clientConfig.successPaymentRedirection2);
+
+							participantService.getParticipant(bookingid).then(participant => {
+								let total = 0;
+								let booking = {
+									husbandName: participant.data[0][0].husbandName,
+									wifeName: participant.data[0][0].wifeName,
+									bookingid: participant.data[0][0].participantId,
+									contactNo: participant.data[0][0].contactNo
+								};
+								let participantPoojas = [];
+								participant.data[0].forEach(e => {
+									if (e.poojaName == 'savana') {
+										booking.no_of_savana = e.no_of_savana;
+										total += (e.poojaPrice * e.no_of_savana);
+										participantPoojas.push({ poojaName: e.poojaName, poojaPrice: (e.poojaPrice * e.no_of_savana) });
+									} else {
+										participantPoojas.push({ poojaName: e.poojaName, poojaPrice: e.poojaPrice });
+										total += (e.poojaPrice);
+									}
+								});
+
+								booking.participantPoojas = participantPoojas;
+								booking.totalAmount = total;
+								commonService.sendMail(participant.data[0][0].email, booking);
+								let url=config.clientConfig.successPaymentRedirection + '?txnid=' + txnid;
+								res.redirect(url);
+							});
+
 						});
 					});
 				}

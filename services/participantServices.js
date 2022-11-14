@@ -49,7 +49,7 @@ async function getParticipant(participantId){
 async function createParticipantPooja(req) {
   for (let index = 0; index < req.length; index++) {
     const element = req[index];
-    let query = "call SAVEPARTICIPANTPOOJA('" + element.participantId + "', '" + element.poojaId + "','" + element.startDate + "','" + element.startTime + "','" + element.noOfSavana + "','" + element.endDate + "')";
+    let query = "call SAVEPARTICIPANTPOOJA('" + element.participantId + "', '" + element.poojaId + "','" + element.startDate + "','" + element.startTime + "','" + element.noOfSavana + "','" + element.endDate + "','" + element.endTime + "')";
     const result = await db.query(
       query
     );
