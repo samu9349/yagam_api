@@ -75,7 +75,7 @@ function contactUs(data) {
 
     const mailOptions = {
         from: config.mailConfig.user,
-        to: 'samu9349@gmail.com,manusankar88@gmail.com',
+        to: config.mailConfig.user,
         subject: `Enquiry from Customer`,
         html: htmlBody
     };
