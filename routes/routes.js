@@ -231,9 +231,9 @@ router.post('/payment/success', function (req, res) {
 								let participantPoojas = [];
 								participant.data[0].forEach(e => {
 									if (e.poojaName == 'savana') {
-										booking.no_of_savana = e.no_of_savana;
-										total += (e.poojaPrice * e.no_of_savana);
-										participantPoojas.push({ poojaName: e.poojaName, poojaPrice: (e.poojaPrice * e.no_of_savana) });
+										booking.no_of_savana = e.number_of_savana;
+										total += (e.poojaPrice * e.number_of_savana);
+										participantPoojas.push({ poojaName: e.poojaName, poojaPrice: (e.poojaPrice * e.number_of_savana) });
 									} else {
 										participantPoojas.push({ poojaName: e.poojaName, poojaPrice: e.poojaPrice });
 										total += (e.poojaPrice);

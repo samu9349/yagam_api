@@ -346,7 +346,7 @@ function sendMail(toAddress, booking) {
                                                                         style="font-family: 'Helvetica neue', Helvetica, arial, sans-serif; padding: 32px 40px; ">
                                                                         <h2
                                                                             style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
-                                                                            Hi{USER_NAME},
+                                                                            Hi {USER_NAME},
                                                                         </h2>
                                                                         <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
                                                                             class="">Your booking has been confirmed. Please
@@ -376,7 +376,10 @@ function sendMail(toAddress, booking) {
                                                                                                         style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">
                                                                                                         Payment Details</td>
                                                                                                 </tr>
-                                                                                                {{POOJA_DETAILS}}
+                                                                                                {POOJA_DETAILS}
+                                                                                                <tr>
+                                                                                                <td colspan="3"></td>
+                                                                                                </tr>
                                                                                                 <tr>
                                                                                                     <td
                                                                                                         style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px; color:#000">
