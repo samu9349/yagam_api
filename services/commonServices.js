@@ -94,7 +94,7 @@ function sendMail(toAddress, booking) {
 
     <head>
         <meta name="viewport" content="width=device-width">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="format-detection" content="telephone=no">
         <style>
             body,
@@ -322,158 +322,183 @@ function sendMail(toAddress, booking) {
     
     <body border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" bgcolor="#F7F7F7" style="margin: 0;">
         <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" bgcolor="#F7F7F7">
-    
-            <tr>
-                <td>
-                    <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF">
-                        <tr>
-                            <td>
-                                <table class="content" align="center" cellpadding="0" cellspacing="0" border="0"
-                                    bgcolor="#F7F7F7" style="width: 600px; max-width: 600px;">
-                                    <tr>
-                                        <td colspan="2" style="background: #fff; border-radius: 8px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                                <tr>
-                                                    <td
-                                                        style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                                                <tr class="">
-                                                    <td class="grid__col"
-                                                        style="font-family: 'Helvetica neue', Helvetica, arial, sans-serif; padding: 32px 40px; ">
-                                                        <h2
-                                                            style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
-                                                            Hi {USER_NAME},
-    
-                                                        </h2>
-                                                        <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
-                                                            class="">Your booking has been confirmed. Please
-                                                            review the details of your booking.</p>
-                                                        <table width="100%" border="2" cellspacing="0" cellpadding="0"
-                                                            style="margin-top: 12px; margin-bottom: 12px; margin: 24px 0; color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif;">
-                                                            <tr>
-                                                                <td
-                                                                    style="padding:20px 20px 0px ; font-weight:700; font-size: 25px; ">
-                                                                    Booking Details <br>
-                                                                    <p
-                                                                        style="padding-top:0px; font-weight:700; font-size: 12px; ">
-                                                                        Booking Confirmation Code: {BOOKING_TRANSACTION}
-                                                                       </p>
-                                                                </td>
-                                                            </tr>
-    
-                                                            
-                                                            <tr>
-                                                                <td>
-                                                                    <table style="width: 100%;!important">
-                                                                        <tr>
-                                                                            <td
-                                                                                style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">
-                                                                                Payment Details</td>
-                                                                        </tr>
-                                                                        <td
-                                                                            style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
-                                                                            ₹ 2300 x 2 Rooms x 3 Nights
-                                                                        </td>
-                                                                        <td></td>
-                                                                        <td
-                                                                            style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
-                                                                            ₹ 13800</td>
-                                                            </tr>
-                                                            <td
-                                                                style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">
-                                                                All Applicable Taxes </td>
-                                                            <td></td>
-                                                            <td
-                                                                style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">
-                                                                ₹ 3105</td>
-                                                            <tr>
-                                                                <td
-                                                                    style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px; color:#000">
-                                                                    Grand Total </td>
-                                                                <td></td>
-                                                                <td
-                                                                    style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; color:#000;">
-                                                                    ₹ 16905</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td
-                                                                    style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px;">
-                                                                    Payment Mode </td>
-                                                                <td></td>
-                                                                <td
-                                                                    style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; ">
-                                                                    Online</td>
-                                                            </tr>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    <tr>
-    
-                                    </tr>
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF">
+                            <tbody>
+                                <tr>
                                     <td>
-                                        <table style="width: 100%;!important">
-                                            <tr>
-                                                <td style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">
-                                                    Guest Details</td>
-                                            </tr>
-                                            <td
-                                                style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:700; font-size: 14px;">
-                                                Room {
-                                                {
-                                                1
-                                                }
-                                                }
+                                        <table class="content" align="center" cellpadding="0" cellspacing="0" border="0"
+                                            bgcolor="#F7F7F7" style="width: 600px; max-width: 600px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2" style="background: #fff; border-radius: 8px;">
+                                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td
+                                                                        style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="">
+                                                                    <td class="grid__col"
+                                                                        style="font-family: 'Helvetica neue', Helvetica, arial, sans-serif; padding: 32px 40px; ">
+                                                                        <h2
+                                                                            style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
+                                                                            Hi{USER_NAME},
+                                                                        </h2>
+                                                                        <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
+                                                                            class="">Your booking has been confirmed. Please
+                                                                            review the details of your booking.</p>
+                                                                        <table width="100%" border="2" cellspacing="0"
+                                                                            cellpadding="0"
+                                                                            style="margin-top: 12px; margin-bottom: 12px; margin: 24px 0; color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td
+                                                                                        style="padding:20px 20px 0px ; font-weight:700; font-size: 25px; ">
+                                                                                        Booking Details <br>
+                                                                                        <p
+                                                                                            style="padding-top:0px; font-weight:700; font-size: 12px; ">
+                                                                                            Booking Confirmation
+                                                                                            Code:{BOOKING_TRNNO}
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table
+                                                                                            style="width: 100%;!important">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">
+                                                                                                        Payment Details</td>
+                                                                                                </tr>
+                                                                                                {{POOJA_DETAILS}}
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px; color:#000">
+                                                                                                        Grand Total </td>
+                                                                                                    <td></td>
+                                                                                                    <td
+                                                                                                        style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; color:#000;">
+                                                                                                        {TOTAL}</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px;">
+                                                                                                        Payment Mode </td>
+                                                                                                    <td></td>
+                                                                                                    <td
+                                                                                                        style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; ">
+                                                                                                        Online</td>
+                                                                                                </tr>
     
-                                            </td>
-                        </tr>
-            </tr>
-            <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">Mr. Bill Gates
-            </td>
-            <td></td>
-            <td style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">+91 1234567890</td>
-            </tr>
-            <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">Mrs. Melinda
-                Gates </td>
-            <td></td>
-            <td style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">+91 1234567890</td>
-            </tr>
-            <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:700; font-size: 14px;">
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
     
-            </td>
-            </tr>
-            </tr>
-            <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;"></td>
-            <td></td>
-            <td style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;"></td>
-            </tr>
-            <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;"></td>
-            <td></td>
-            <td style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;"></td>
-        </table>
-        </td>
-        </tr>
-        </tr>
-        </table>
-        <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
-            class="">Hope you enjoyed the booking experience and will like the stay too.</p>
-        <p style="color: #666666; font-weight: 400; font-size: 17px; line-height: 24px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 24px;"
-            class="">Thank you, </p>
-        <p
-            style="color: #666666; font-weight: 400; font-size: 17px;  font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 10px;">
-            Management</p>
-        </td>
-        </tr>
-        </td>
-        </tr>
-        </table>
-        </td>
-        </tr>
-        </table>
-        </td>
-        </tr>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table
+                                                                                            style="width: 100%;!important">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">
+                                                                                                        Guest Details</td>
+                                                                                                </tr>
+    
+    
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
+                                                                                                        Mr. {HUSBAND_NAME}
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                    <td
+                                                                                                        style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
+                                                                                                        {CONTACT_NO}</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">
+                                                                                                        Mrs. {WIFE_NAME}
+                                                                                                        Gates </td>
+                                                                                                    <td></td>
+                                                                                                    <td
+                                                                                                        style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">
+                                                                                                        </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:700; font-size: 14px;">
+    
+                                                                                                    </td>
+                                                                                                </tr>
+    
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                    <td
+                                                                                                        style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                    <td
+                                                                                                        style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+    
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
+                                                                            class="">Hope you enjoyed the booking experience
+                                                                            and will like the stay too.</p>
+                                                                        <p style="color: #666666; font-weight: 400; font-size: 17px; line-height: 24px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 24px;"
+                                                                            class="">Thank you, </p>
+                                                                        <p
+                                                                            style="color: #666666; font-weight: 400; font-size: 17px;  font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 10px;">
+                                                                            Management</p>
+                                                                    </td>
+                                                                </tr>
+    
+    
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+    
+    
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </body>
     
-    </html>`;
+    </html>
+    `;
 
     htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
     htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
@@ -525,7 +550,7 @@ function sendMail(toAddress, booking) {
         subject: `Payment confirmation`,
         html: htmlBody
     };
-
+console.log(htmlBody);
     mailTransport.sendMail(mailOptions).then(() => {
         console.log('Email sent successfully');
     }).catch((err) => {
