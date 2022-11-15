@@ -429,7 +429,7 @@ function sendMail(toAddress, booking) {
                                                                                                     <td
                                                                                                         style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">
                                                                                                         Mrs. {WIFE_NAME}
-                                                                                                        Gates </td>
+                                                                                                        </td>
                                                                                                     <td></td>
                                                                                                     <td
                                                                                                         style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">
@@ -499,7 +499,7 @@ function sendMail(toAddress, booking) {
     
     </html>
     `;
-
+    htmlBody = htmlBody.replace('{USER_NAME}', booking.husbandName);
     htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
     htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
     htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.bookingid);
@@ -523,6 +523,8 @@ function sendMail(toAddress, booking) {
     ${poojaPrice}</td>
 </tr>`;
     });
+    
+    htmlBody = htmlBody.replace('{POOJA_DETAILS}', poojaDetailsBody);
     htmlBody = htmlBody.replace('{TOTAL}', booking.totalAmount);
     htmlBody = htmlBody.replace('{CONTACT_NO}', booking.contactNo);
 
