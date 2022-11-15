@@ -507,14 +507,10 @@ function sendMail(toAddress, booking) {
     htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
     htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.bookingid);
     let poojaDetailsBody = '';
-    let poojaPrice=0;
+    let poojaPrice = 0;
     booking.participantPoojas.forEach(a => {
-        poojaPrice=0;
-        if(a.poojaName=='savana'){
-            poojaPrice = a.poojaPrice* booking.no_of_savana;
-        }else{
-            poojaPrice = a.poojaPrice;
-        }
+        poojaPrice = 0;
+        poojaPrice = a.poojaPrice;
         poojaDetailsBody += `<tr>
 <td
     style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
@@ -526,7 +522,7 @@ function sendMail(toAddress, booking) {
     ${poojaPrice}</td>
 </tr>`;
     });
-    
+
     htmlBody = htmlBody.replace('{POOJA_DETAILS}', poojaDetailsBody);
     htmlBody = htmlBody.replace('{TOTAL}', booking.totalAmount);
     htmlBody = htmlBody.replace('{CONTACT_NO}', booking.contactNo);
@@ -555,7 +551,6 @@ function sendMail(toAddress, booking) {
         subject: `Payment confirmation`,
         html: htmlBody
     };
-console.log(htmlBody);
     mailTransport.sendMail(mailOptions).then(() => {
         console.log('Email sent successfully');
     }).catch((err) => {

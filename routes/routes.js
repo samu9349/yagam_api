@@ -127,7 +127,6 @@ router.post('/payment/success', function (req, res) {
 		//hash with additionalcharges
 		reverseKeyString = additionalcharges + '|' + reverseKeyString;
 	}
-	res.redirect(config.clientConfig.successPaymentRedirection);
 
 	//Generate Hash
 	var cryp = crypto.createHash('sha512');
@@ -243,8 +242,8 @@ router.post('/payment/success', function (req, res) {
 								booking.participantPoojas = participantPoojas;
 								booking.totalAmount = total;
 								commonService.sendMail(participant.data[0][0].email, booking);
-								// let url=config.clientConfig.successPaymentRedirection;
-								// res.redirect(url);
+								let url=config.clientConfig.successPaymentRedirection+'?bookingId='+booking.bookingid;
+								res.redirect(url);
 							});
 
 						});
