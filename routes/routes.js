@@ -225,7 +225,9 @@ router.post('/payment/success', function (req, res) {
 									husbandName: participant.data[0][0].husbandName,
 									wifeName: participant.data[0][0].wifeName,
 									bookingid: participant.data[0][0].participantId,
-									contactNo: participant.data[0][0].contactNo
+									contactNo: participant.data[0][0].contactNo,
+									startDate: participant.data[0][0].start_date,
+									startTime: participant.data[0][0].start_time,
 								};
 								let participantPoojas = [];
 								participant.data[0].forEach(e => {

@@ -364,8 +364,14 @@ function sendMail(toAddress, booking) {
                                                                                             Booking Confirmation
                                                                                             Code:{BOOKING_TRNNO}
                                                                                         </p>
+                                                                                        <p
+                                                                                        style="padding-top:0px; font-weight:700; font-size: 12px; ">
+                                                                                        Start Date: {START_DATE} , Start
+                                                                                        Time: {START_TIME}
+                                                                                        </p>
                                                                                     </td>
                                                                                 </tr>
+                                                                                
                                                                                 <tr>
                                                                                     <td>
                                                                                         <table
@@ -506,6 +512,9 @@ function sendMail(toAddress, booking) {
     htmlBody = htmlBody.replace('{HUSBAND_NAME}', booking.husbandName);
     htmlBody = htmlBody.replace('{WIFE_NAME}', booking.wifeName);
     htmlBody = htmlBody.replace('{BOOKING_TRNNO}', booking.bookingid);
+    htmlBody = htmlBody.replace('{START_DATE}', booking.startDate);
+    htmlBody = htmlBody.replace('{START_TIME}', booking.startTime);
+
     let poojaDetailsBody = '';
     let poojaPrice = 0;
     booking.participantPoojas.forEach(a => {
@@ -514,7 +523,7 @@ function sendMail(toAddress, booking) {
         poojaDetailsBody += `<tr>
 <td
     style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
-    ${a.poojaName}
+    ${(a.poojaName == 'savana' ? a.poojaName + '(' + booking.no_of_savana + ' Nos)' : a.poojaName)}
 </td>
 <td></td>
 <td
