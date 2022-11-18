@@ -19,15 +19,15 @@ const config = {
       callback_url:'https://yagamapi.onrender.com/api/payment/success'
     },
     clientConfig:{
-      // successPaymentRedirection:'http://localhost:4200/payment/success',
-      // cancelPaymentRedirection:'http://localhost:4200/payment/cancel'
+      // successPaymentRedirection:'http://localhost:4200/#/payment/success',
+      // cancelPaymentRedirection:'http://localhost:4200/#/payment/cancel'
       successPaymentRedirection:'https://puthrakameshtiyagam.com/#/payment/success',
       cancelPaymentRedirection:'https://puthrakameshtiyagam.com/#/payment/cancel'
     },
     mailConfig:{
       host:'smtpout.secureserver.net',
-      user:'alerts@puthrakameshtiyagam.com',
-      password:'vysakh123.',
+      user:'info@puthrakameshtiyagam.com',
+      password:'Yagam@123',
       port:465,
     }
   };
