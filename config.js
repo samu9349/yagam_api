@@ -25,7 +25,7 @@ const config = {
       cancelPaymentRedirection:'https://puthrakameshtiyagam.com/#/payment/cancel'
     },
     mailConfig:{
-      host:'smtpout.secureserver.net',
+      host:'puthrakameshtiyagam.com',
       user:'info@puthrakameshtiyagam.com',
       password:'Yagam@123',
       port:465,
