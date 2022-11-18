@@ -2,7 +2,7 @@ const db = require('./db');
 const helper = require('../helper');
 var nodemailer = require('nodemailer');
 const config = require("../config")
-
+const service = require('./participantServices')
 
 async function getPooja() {
     const rows = await db.query(
@@ -548,9 +548,9 @@ function sendMail(toAddress, booking) {
     };
     mailTransport.sendMail(mailOptions).then(() => {
         console.log('Email sent successfully');
+        service.updateMailStatus(booking.bookingid,'Success');
     }).catch((err) => {
-        console.log('Failed to send email');
-        console.error(err);
+       service.updateMailStatus(booking.bookingid,'Failed');
     });
 }
 

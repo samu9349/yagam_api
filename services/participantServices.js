@@ -35,6 +35,21 @@ async function updateResponseId(bookingId,responseId){
   return {message};
 }
 
+async function updateMailStatus(bookingId,status){
+  const result = await db.query(
+    `UPDATE participant set mailSendStatus='${status}'  where participantId=${bookingId}`
+  );
+
+  let message = 'Error in updating ';
+
+  if (result.affectedRows) {
+    message = 'updated successfully';
+  }
+
+  return {message};
+}
+
+
 async function getParticipant(participantId){
   let query = "call GETPARTICIPANT('" + participantId + "')";
   const rows = await db.query(
@@ -63,5 +78,6 @@ module.exports = {
   createParticipantPooja,
   createPaymentResponse,
   updateResponseId,
-  getParticipant
+  getParticipant,
+  updateMailStatus
 }
