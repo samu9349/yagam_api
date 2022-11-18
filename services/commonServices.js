@@ -514,15 +514,15 @@ function sendMail(toAddress, booking) {
         poojaPrice = 0;
         poojaPrice = a.poojaPrice;
         poojaDetailsBody += `<tr>
-<td
-    style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
-    ${(a.poojaName == 'savana' ? a.poojaName + '(' + booking.no_of_savana + ' Nos)' : a.poojaName)}
-</td>
-<td></td>
-<td
-    style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
-    ${poojaPrice}</td>
-</tr>`;
+        <td
+            style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
+            ${(a.poojaName == 'savana' ? 'സാവന' + '(' + booking.no_of_savana + ' Nos)' : a.poojaName)}
+        </td>
+        <td></td>
+        <td
+            style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">
+            ${poojaPrice}</td>
+        </tr>`;
     });
 
     htmlBody = htmlBody.replace('{POOJA_DETAILS}', poojaDetailsBody);
@@ -542,7 +542,7 @@ function sendMail(toAddress, booking) {
 
     const mailOptions = {
         from: config.mailConfig.user,
-        to: toAddress,
+        to: 'puthrakameshtiyagam@gmail.com',
         subject: `Payment confirmation`,
         html: htmlBody
     };
