@@ -68,7 +68,7 @@ function contactUs(data) {
 
     const mailOptions = {
         from: config.mailConfig.user,
-        to: config.mailConfig.user,
+        to: 'puthrakameshtiyagam@gmail.com',
         subject: `Enquiry from Customer`,
         html: htmlBody
     };
@@ -542,7 +542,7 @@ function sendMail(toAddress, booking) {
 
     const mailOptions = {
         from: config.mailConfig.user,
-        to: 'puthrakameshtiyagam@gmail.com',
+        to: toAddress,
         subject: `Payment confirmation`,
         html: htmlBody
     };
