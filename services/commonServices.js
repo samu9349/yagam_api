@@ -59,14 +59,7 @@ function contactUs(data) {
 
     const mailTransport = nodemailer.createTransport({
         host: config.mailConfig.host,
-        secure: true,
-        secureConnection: false, // TLS requires secureConnection to be false
-        tls: {
-            ciphers: 'SSLv3'
-        },
-        requireTLS: true,
-        port: 465,
-        debug: true,
+        port: config.mailConfig.port,
         auth: {
             user: config.mailConfig.user,
             pass: config.mailConfig.password
@@ -540,14 +533,7 @@ function sendMail(toAddress, booking) {
 
     const mailTransport = nodemailer.createTransport({
         host: config.mailConfig.host,
-        secure: true,
-        secureConnection: false, // TLS requires secureConnection to be false
-        tls: {
-            ciphers: 'SSLv3'
-        },
-        requireTLS: true,
-        port: 465,
-        debug: true,
+        port: config.mailConfig.port,
         auth: {
             user: config.mailConfig.user,
             pass: config.mailConfig.password
