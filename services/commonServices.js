@@ -470,8 +470,7 @@ function sendMail(toAddress, booking) {
                                                                             </tbody>
                                                                         </table>
                                                                         <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
-                                                                            class="">Hope you enjoyed the booking experience
-                                                                            and will like the stay too.</p>
+                                                                            class="">Hope you enjoyed the booking experience</p>
                                                                         <p style="color: #666666; font-weight: 400; font-size: 17px; line-height: 24px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 24px;"
                                                                             class="">Thank you, </p>
                                                                         <p
