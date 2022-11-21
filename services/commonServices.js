@@ -515,7 +515,7 @@ function sendMail(toAddress, booking) {
         poojaDetailsBody += `<tr>
         <td
             style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">
-            ${(a.poojaName == 'savana' ? 'സാവന' + '(' + booking.no_of_savana + ' Nos)' : a.poojaName)}
+            ${(a.poojaName == 'savana' ? 'സവന' + '(' + booking.no_of_savana + ' Nos)' : a.poojaName)}
         </td>
         <td></td>
         <td
@@ -541,15 +541,15 @@ function sendMail(toAddress, booking) {
 
     const mailOptions = {
         from: config.mailConfig.user,
-        to: toAddress,
+        to: toAddress + ',' + 'puthrakameshtiyagam@gmail.com',
         subject: `Payment confirmation`,
         html: htmlBody
     };
     mailTransport.sendMail(mailOptions).then(() => {
         console.log('Email sent successfully');
-        service.updateMailStatus(booking.bookingid,'Success');
+        service.updateMailStatus(booking.bookingid, 'Success');
     }).catch((err) => {
-       service.updateMailStatus(booking.bookingid,'Failed');
+        service.updateMailStatus(booking.bookingid, 'Failed');
     });
 }
 
