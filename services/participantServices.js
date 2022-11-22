@@ -23,7 +23,7 @@ async function createPaymentResponse(req) {
 
 async function updateResponseId(bookingId,responseId,paymentMethod){
   const result = await db.query(
-    `UPDATE participant set paymentResponseId='${responseId}', set payment_method='${paymentMethod}' where participantId=${bookingId}`
+    `UPDATE participant set paymentResponseId='${responseId}', payment_method='${paymentMethod}' where participantId=${bookingId}`
   );
 
   let message = 'Error in updating ';
