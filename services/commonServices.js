@@ -342,8 +342,8 @@ function sendMail(toAddress, booking) {
                                                                             Hi {USER_NAME},
                                                                         </h2>
                                                                         <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; "
-                                                                            class="">Your booking has been confirmed. Please
-                                                                            review the details of your booking.</p>
+                                                                            class="">Your booking has been received. Please
+                                                                            review the details of your booking and you will get another payment verification email soon.</p>
                                                                         <table width="100%" border="2" cellspacing="0"
                                                                             cellpadding="0"
                                                                             style="margin-top: 12px; margin-bottom: 12px; margin: 24px 0; color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif;">
@@ -542,7 +542,7 @@ function sendMail(toAddress, booking) {
     const mailOptions = {
         from: config.mailConfig.user,
         to: toAddress + ',' + 'puthrakameshtiyagam@gmail.com',
-        subject: `Payment confirmation`,
+        subject: `Received booking`,
         html: htmlBody
     };
     mailTransport.sendMail(mailOptions).then(() => {

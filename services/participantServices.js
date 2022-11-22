@@ -4,7 +4,7 @@ const helper = require('../helper');
 
 
 async function createParticipant(req) {
-  let query = "call SAVEPARTICIPANT('" + req.husbandName + "', '" + req.address + "', '" + req.contactNo + "', '" + req.husbandNakshathram + "','" + req.email + "','" + req.wifeName + "','" + req.wifeNakshathram + "')";
+  let query = "call SAVEPARTICIPANT('" + req.husbandName + "', '" + req.address + "', '" + req.contactNo + "', '" + req.husbandNakshathram + "','" + req.email + "','" + req.wifeName + "','" + req.wifeNakshathram + "','" + req.total + "')";
   const result = await db.query(
     query
   );
@@ -21,9 +21,9 @@ async function createPaymentResponse(req) {
   return { message };
 }
 
-async function updateResponseId(bookingId,responseId){
+async function updateResponseId(bookingId,responseId,paymentMethod){
   const result = await db.query(
-    `UPDATE participant set paymentResponseId='${responseId}'  where participantId=${bookingId}`
+    `UPDATE participant set paymentResponseId='${responseId}', set payment_method='${paymentMethod}' where participantId=${bookingId}`
   );
 
   let message = 'Error in updating ';

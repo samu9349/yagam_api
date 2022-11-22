@@ -63,6 +63,15 @@ router.get('/common/getAllPooja', async function (req, res, next) {
 	}
 });
 
+router.get('/participant/getParticipant/:id', async function (req, res, next) {
+	try {
+		res.json(await participantService.getParticipant(req));
+	} catch (err) {
+		console.error(`Error while getting`, err.message);
+		next(err);
+	}
+});
+
 router.post('/common/contactUs', async function (req, res, next) {
 	try {
 		res.json(await commonService.contactUs(req.body));
@@ -217,7 +226,7 @@ router.post('/payment/success', function (req, res) {
 					};
 					participantService.createPaymentResponse(data).then(response => {
 						let bookingid = productinfo.split('_')[1];
-						participantService.updateResponseId(bookingid, txnid).then(response1 => {
+						participantService.updateResponseId(bookingid, txnid,'').then(response1 => {
 
 							participantService.getParticipant(bookingid).then(participant => {
 								let total = 0;
@@ -258,5 +267,39 @@ router.post('/payment/success', function (req, res) {
 		});
 });
 
+router.post('/participant/confirmbooking',function(req,res){
+	let data=req.body;
+	participantService.updateResponseId(data.bookingid, data.txnid,data.paymentMethod).then(response1 => {
 
+		participantService.getParticipant(bookingid).then(participant => {
+			let total = 0;
+			let booking = {
+				husbandName: participant.data[0][0].husbandName,
+				wifeName: participant.data[0][0].wifeName,
+				bookingid: participant.data[0][0].participantId,
+				contactNo: participant.data[0][0].contactNo,
+				startDate: participant.data[0][0].start_date,
+				startTime: participant.data[0][0].start_time,
+			};
+			let participantPoojas = [];
+			participant.data[0].forEach(e => {
+				if (e.poojaName == 'savana') {
+					booking.no_of_savana = e.number_of_savana;
+					total += (e.poojaPrice * e.number_of_savana);
+					participantPoojas.push({ poojaName: e.poojaName, poojaPrice: (e.poojaPrice * e.number_of_savana) });
+				} else {
+					participantPoojas.push({ poojaName: e.poojaName, poojaPrice: e.poojaPrice });
+					total += (e.poojaPrice);
+				}
+			});
+
+			booking.participantPoojas = participantPoojas;
+			booking.totalAmount = total;
+			commonService.sendMail(participant.data[0][0].email, booking);
+			let url=config.clientConfig.successPaymentRedirection+'?bookingId='+booking.bookingid;
+			res.redirect(url);
+		});
+
+	});
+});
 module.exports = router;
