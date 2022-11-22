@@ -271,7 +271,7 @@ router.post('/participant/confirmbooking',function(req,res){
 	let data=req.body;
 	participantService.updateResponseId(data.bookingid, data.txnid,data.paymentMethod).then(response1 => {
 
-		participantService.getParticipant(bookingid).then(participant => {
+		participantService.getParticipant(data.bookingid).then(participant => {
 			let total = 0;
 			let booking = {
 				husbandName: participant.data[0][0].husbandName,
