@@ -65,7 +65,7 @@ router.get('/common/getAllPooja', async function (req, res, next) {
 
 router.get('/participant/getParticipant/:id', async function (req, res, next) {
 	try {
-		res.json(await participantService.getParticipant(req));
+		res.json(await participantService.getParticipant(req.params.id));
 	} catch (err) {
 		console.error(`Error while getting`, err.message);
 		next(err);
