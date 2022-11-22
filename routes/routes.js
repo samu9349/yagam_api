@@ -281,7 +281,7 @@ router.post('/participant/updateResponseId', async function (req, res, next) {
 router.post('/common/sendmail', async function (req, res, next) {
 	try {
 		let data = req.body;
-		res.json(await commonService.sendMail(data.booking.email,data.booking));
+		res.json(await commonService.sendMail(data.email,data));
 	} catch (err) {
 		console.error(`Error while save`, err.message);
 		next(err);
