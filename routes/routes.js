@@ -296,8 +296,8 @@ router.post('/participant/confirmbooking',function(req,res){
 			booking.participantPoojas = participantPoojas;
 			booking.totalAmount = total;
 			commonService.sendMail(participant.data[0][0].email, booking);
-			let url=config.clientConfig.successPaymentRedirection+'?bookingId='+booking.bookingid;
-			res.redirect(url);
+			// let url=config.clientConfig.successPaymentRedirection+'?bookingId='+booking.bookingid;
+			// res.redirect(url);
 		});
 
 	});
